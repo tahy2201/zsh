@@ -4,22 +4,11 @@ on: push
 jobs:
   deploy-workflow:
     runs-on: ubuntu-latest
-    container: 
-      image: openjdk:21-jdk
-    steps: 
-      - name: digdag install
-        run: |
-          mkdir -p ~/bin/
-          curl -o ~/bin/digdag -L "https://dl.digdag.io/digdag-latest"
-          chmod +x ~/bin/digdag
-          digdag --version
-
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: deploy
         run: |
-          echo ${{ secrets.TEST_SECRET_KEY }}
-          digdag --version
-          ls -l ${{ github.workspace }}
+          git diff origin/${GITHUB_BASE_REF}...origin/${GITHUB_HEAD_REF}
 
