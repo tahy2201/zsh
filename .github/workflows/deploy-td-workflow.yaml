@@ -12,6 +12,7 @@ jobs:
           mkdir -p ~/bin/
           curl -o ~/bin/digdag -L "https://dl.digdag.io/digdag-latest"
           chmod +x ~/bin/digdag
+          digdag --version
 
       - name: Checkout Code
         uses: actions/checkout@v2
