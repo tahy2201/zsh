@@ -14,5 +14,5 @@ jobs:
 
       - name: deploy
         run: |
-          git diff origin/${GITHUB_BASE_REF}...origin/${GITHUB_HEAD_REF}
+          git diff origin/${{ github.base_ref }}...origin/${{ github.head_ref }}
 
