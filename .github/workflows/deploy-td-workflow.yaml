@@ -1,0 +1,23 @@
+name: Container
+on: push
+
+jobs:
+  node-docker:
+    runs-on: ubuntu-latest
+    container: 
+      image: openjdk:21-jdk
+    steps: 
+      - name: digdag install
+        run: |
+          mkdir -p ~/bin/
+          curl -o ~/bin/digdag -L "https://dl.digdag.io/digdag-latest"
+          chmod +x ~/bin/digdag
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: deploy
+        run: |
+          ls -l ${{ github.workspace }}
+          echo ${{ secrets.TEST_TD_KEY }}
+          digdag --version
